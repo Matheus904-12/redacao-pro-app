@@ -12,28 +12,28 @@ export default function DashboardCards({ totalAlunos, totalEntregues, totalNaoEn
       value: totalAlunos,
       icon: <GroupIcon sx={{ color: '#6C63FF', fontSize: 32 }} />,
       color: '#6C63FF',
-      growth: '+10%',
+      growth: '+0%',
     },
     {
       label: 'Redações Entregues',
       value: totalEntregues,
       icon: <AssignmentTurnedInIcon sx={{ color: '#43a047', fontSize: 32 }} />,
       color: '#43a047',
-      growth: '+25%',
+      growth: '+0%',
     },
     {
       label: 'Não Entregues',
       value: totalNaoEntregues,
       icon: <EmojiEventsIcon sx={{ color: '#FFD600', fontSize: 32 }} />,
       color: '#FFD600',
-      growth: '+5%',
+      growth: '+0%',
     },
     {
       label: 'Analisadas',
       value: totalAnalisadas,
       icon: <AssignmentTurnedInIcon sx={{ color: '#6C63FF', fontSize: 32 }} />,
       color: '#6C63FF',
-      growth: '+20%',
+      growth: '+0%',
     },
   ];
 
@@ -50,16 +50,21 @@ export default function DashboardCards({ totalAlunos, totalEntregues, totalNaoEn
             p: 3,
             borderRadius: 2,
             bgcolor: '#fff',
-            boxShadow: '0 2px 12px rgba(108,99,255,0.07)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.05)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
             position: 'relative',
             mb: { xs: 2, md: 0 },
+            transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+            ':hover': {
+              transform: 'translateY(-5px)',
+              boxShadow: '0 12px 36px rgba(0,0,0,0.1)',
+            },
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
-            <Box sx={{ bgcolor: card.color, borderRadius: '50%', width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1 }}>
+            <Box sx={{ bgcolor: card.color, borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1, opacity: 0.1 }}>
               {card.icon}
             </Box>
             <Typography variant="subtitle2" sx={{ color: card.color, fontWeight: 600, fontSize: 16 }}>{card.label}</Typography>

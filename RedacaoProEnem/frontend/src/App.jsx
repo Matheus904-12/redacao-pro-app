@@ -11,18 +11,12 @@ import './App.css';
 
 export default function App() {
   // Exemplo de dados para dashboard (depois integrar com backend)
-  const totalAlunos = 120;
-  const totalEntregues = 80;
-  const totalNaoEntregues = 30;
-  const totalAnalisadas = 60;
-  const competenciasExemplo = [
-    { nome: 'Competência 1', nota: 180 },
-    { nome: 'Competência 2', nota: 160 },
-    { nome: 'Competência 3', nota: 200 },
-    { nome: 'Competência 4', nota: 140 },
-    { nome: 'Competência 5', nota: 180 },
-  ];
-  const notaTotalExemplo = 860;
+  const totalAlunos = 0;
+  const totalEntregues = 0;
+  const totalNaoEntregues = 0;
+  const totalAnalisadas = 0;
+  const competenciasExemplo = [];
+  const notaTotalExemplo = 0;
 
   return (
     <>

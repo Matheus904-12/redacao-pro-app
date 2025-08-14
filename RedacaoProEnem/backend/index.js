@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const axios = require('axios');
 require('dotenv').config();
 const Redacao = require('./models/Redacao');
 
@@ -48,13 +49,10 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       texto = 'Formato não suportado.';
     }
     const iaDetectado = /chatgpt|gpt|openai|escrevi com ia|inteligência artificial/i.test(texto);
-    const competencias = [
-      { nome: 'Competência 1', nota: Math.floor(Math.random() * 200), comentario: 'Demonstrou domínio da norma culta.' },
-      { nome: 'Competência 2', nota: Math.floor(Math.random() * 200), comentario: 'Compreendeu a proposta.' },
-      { nome: 'Competência 3', nota: Math.floor(Math.random() * 200), comentario: 'Selecionou, relacionou e organizou argumentos.' },
-      { nome: 'Competência 4', nota: Math.floor(Math.random() * 200), comentario: 'Demonstrou conhecimento dos mecanismos linguísticos.' },
-      { nome: 'Competência 5', nota: Math.floor(Math.random() * 200), comentario: 'Elaborou proposta de intervenção.' }
-    ];
+
+    // Chama o serviço de IA para avaliar a redação
+    const response = await axios.post(process.env.AI_SERVICE_URL + '/evaluate', { texto });
+    const competencias = response.data.competencias;
     // Arquivar no MongoDB
     const redacao = new Redacao({
       nomeAluno,

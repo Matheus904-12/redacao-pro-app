@@ -1,13 +1,31 @@
 import React from 'react';
 import { Paper, Typography, Box, Button } from '@mui/material';
 import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const data = {
   labels: ['Alunos', 'Autoavaliação', 'Mentoria'],
   datasets: [
     {
       label: 'Redações',
-      data: [40, 70, 55],
+      data: [0, 0, 0],
       backgroundColor: [
         '#6C63FF',
         '#B388FF',
