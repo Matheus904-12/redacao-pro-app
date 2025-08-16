@@ -3,36 +3,49 @@ import { Box, Paper, Typography } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import GroupIcon from '@mui/icons-material/Group';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+const iconMap = {
+  Group: GroupIcon,
+  AssignmentTurnedIn: AssignmentTurnedInIcon,
+  HourglassEmpty: HourglassEmptyIcon,
+  CheckCircle: CheckCircleIcon,
+};
+
+const CardIcon = ({ iconName, sx }) => {
+  const IconComponent = iconMap[iconName];
+  return IconComponent ? <IconComponent sx={sx} /> : null;
+};
 
 export default function DashboardCards({ totalAlunos, totalEntregues, totalNaoEntregues, totalAnalisadas }) {
   const cards = [
     {
       label: 'Alunos',
-      value: totalAlunos,
-      icon: <GroupIcon sx={{ color: '#6C63FF', fontSize: 32 }} />,
+      value: totalAlunos || 0,
+      iconName: 'Group',
       color: '#6C63FF',
       growth: '+0%',
     },
     {
       label: 'Redações Entregues',
-      value: totalEntregues,
-      icon: <AssignmentTurnedInIcon sx={{ color: '#43a047', fontSize: 32 }} />,
+      value: totalEntregues || 0,
+      iconName: 'AssignmentTurnedIn',
       color: '#43a047',
       growth: '+0%',
     },
     {
       label: 'Não Entregues',
-      value: totalNaoEntregues,
-      icon: <EmojiEventsIcon sx={{ color: '#FFD600', fontSize: 32 }} />,
-      color: '#FFD600',
+      value: totalNaoEntregues || 0,
+      iconName: 'HourglassEmpty',
+      color: '#FF9800',
       growth: '+0%',
     },
     {
       label: 'Analisadas',
-      value: totalAnalisadas,
-      icon: <AssignmentTurnedInIcon sx={{ color: '#6C63FF', fontSize: 32 }} />,
-      color: '#6C63FF',
+      value: totalAnalisadas || 0,
+      iconName: 'CheckCircle',
+      color: '#00BFA5',
       growth: '+0%',
     },
   ];
@@ -64,8 +77,8 @@ export default function DashboardCards({ totalAlunos, totalEntregues, totalNaoEn
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
-            <Box sx={{ bgcolor: card.color, borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1, opacity: 0.1 }}>
-              {card.icon}
+            <Box sx={{ bgcolor: card.color, borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mr: 1 }}>
+              <CardIcon iconName={card.iconName} sx={{ color: '#fff', fontSize: 32 }} />
             </Box>
             <Typography variant="subtitle2" sx={{ color: card.color, fontWeight: 600, fontSize: 16 }}>{card.label}</Typography>
           </Box>
